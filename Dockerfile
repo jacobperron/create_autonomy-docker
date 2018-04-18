@@ -3,6 +3,11 @@ FROM ros:${VERSION}
 
 RUN apt-get update -qq && \
     apt-get install -y build-essential cmake git libboost-system-dev libboost-thread-dev libgtest-dev python-catkin-tools vim && \
+    cd /usr/src/gtest && \
+    cmake CMakeLists.txt && \
+    make && \
+    cp *.a /usr/lib && \
+    cd && \
     mkdir catkin_ws/src -p && \
     cd catkin_ws && \
     catkin init && \
